@@ -1,14 +1,15 @@
+import { localUserServ } from "../../service/localService";
 import { USER_LOGIN } from "../constant/UserContant"
 
 const initialState = {
-    UserInfo: null,
+    userInfo: localUserServ.get(),
 }
 
 let userReducer = (state = initialState, { type, payload }) => {
   switch (type) {
 
   case USER_LOGIN:
-    return { ...state, UserInfo: payload };
+    return { ...state, userInfo: payload };
 
   default:
     return state
