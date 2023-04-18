@@ -3,9 +3,12 @@ import { movieServ } from '../../../service/movieService'
 
 import { Tabs } from 'antd';
 import ItemMovie from '../ListMovie/ItemMovie';
+import ItemTabMovie from './ItemTabMovie';
+
 const onChange = (key) => {
     console.log(key);
 };
+
 const items = [
     {
         key: '1',
@@ -39,9 +42,9 @@ export default function TabMovie() {
                     return {
                         key: cumRap.tenCumRap,
                         label: <div>{cumRap.tenCumRap}</div>,
-                        children: <div style={{ height: 500 }} className='grid grid-cols-3 gap-1 overflow-y-scroll '>
+                        children: <div style={{ height: 500 }} className='overflow-y-scroll '>
                             {cumRap.danhSachPhim.map(item => {
-                                return <ItemMovie data={item} />
+                                return <ItemTabMovie phim={item} />
                             })}
                         </div>
                     }

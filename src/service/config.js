@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const BASE_URL = "https://movienew.cybersoft.edu.vn";
 
 const TokenCybersoft =
@@ -8,3 +10,8 @@ export const configHeaders = () => {
         TokenCybersoft: TokenCybersoft,
     };
 };
+
+export const https = axios.create({
+    baseURL: BASE_URL,
+    headers: configHeaders(),
+})

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 const { Meta } = Card;
 
 const ItemMovie = (data) => {
-    let { hinhAnh, tenPhim, biDanh, moTa } = data.data
+    let { hinhAnh, tenPhim, biDanh, moTa, maPhim } = data.data
     return <Card
         hoverable
 
@@ -14,7 +14,7 @@ const ItemMovie = (data) => {
             title={moTa}
             description={<NavLink
                 className={'px-5 py-2 border-red-500 rounded border-2'}
-                to='/detail'>
+                to={`/detail/${maPhim}`}>
                 Xem ngay
             </NavLink>} />
     </Card>

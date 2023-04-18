@@ -5,8 +5,7 @@ import TabMovie from './TabMovie/TabMovie'
 
 export default function HomePage() {
   return (
-    <div className='space-y-10'>
-      <Headers />
+    <div className=' container space-y-10'>
       <ListMovie />
       <TabMovie />
     </div>
