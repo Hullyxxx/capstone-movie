@@ -6,6 +6,7 @@ import { userServ } from "../../service/userService";
 import { USER_LOGIN } from "../../redux/constant/UserContant";
 import Lottie from "lottie-react";
 import bg_animate from '../../assets/animate_login.json'
+import { setLoginAction, setLoginActionService } from "../../redux/action/userAction";
 
 const LoginPage = () => {
   let dispatch = useDispatch();
@@ -18,10 +19,7 @@ const LoginPage = () => {
         message.success("Login thành công");
         // lưu thông tin user vào localStorage
         localUserServ.set(res.data.content);
-        dispatch({
-          type: USER_LOGIN,
-          payload: res.data.content,
-        });
+        dispatch(setLoginAction(res.data.content));
         // chuyển hướng user tới home page
         navigate("/");
         console.log(res);
@@ -31,6 +29,20 @@ const LoginPage = () => {
         console.log(err);
       });
   };
+
+  const onFinishThunk = (values) => {
+    //callback to use navigate
+    let onSuccess = () => {
+      message.success("Login thành công");
+      // lưu thông tin user vào localStorage
+
+      // chuyển hướng user tới home page
+      navigate("/");
+    }
+
+    dispatch(setLoginActionService(values, onSuccess))
+  }
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -55,7 +67,7 @@ const LoginPage = () => {
             initialValues={{
               remember: true,
             }}
-            onFinish={onFinish}
+            onFinish={onFinishThunk}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
             layout="vertical"

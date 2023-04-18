@@ -2,6 +2,7 @@ import React from 'react'
 import { localUserServ } from '../../service/localService'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import UserDropDown from '../Headers/UserDropDown'
 
 export default function UserMenu() {
 
@@ -19,8 +20,8 @@ export default function UserMenu() {
 
     if (userInfo) {
       return <>
-        <span>{userInfo.hoTen}</span>
-        <button className={buttonCss} onClick={handleLogout}>Đăng xuất</button>
+        <UserDropDown user={userInfo} btnLogOut={<button className={buttonCss} onClick={handleLogout}>Đăng xuất</button>} />
+        {/* <button className={buttonCss} onClick={handleLogout}>Đăng xuất</button> */}
       </>
     } else {
       return <>
@@ -32,6 +33,6 @@ export default function UserMenu() {
     }
   }
   return (
-    <div className='space-x-5'> {renderContent(userInfo)} </div>
+    <div className='space-x-5 flex items-center'> {renderContent(userInfo)} </div>
   )
 }

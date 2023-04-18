@@ -6,6 +6,7 @@ import HomePage from './Pages/HomePage/HomePage';
 import DetailPage from './Pages/DetailPage/DetailPage';
 import Layout from './Layout/Layout';
 import BookingPage from './Pages/BookingPage/BookingPage';
+import NotFoundPage from './Pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/detail/:idPhim' element={<Layout Component={DetailPage} />} />
         <Route path='/booking/:id' element={<Layout Component={BookingPage} />} />
+        <Route path='*' element={<Layout Component={NotFoundPage} />} />
       </Routes>
     </BrowserRouter>
   );
