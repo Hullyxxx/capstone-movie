@@ -48,11 +48,11 @@ const LoginPage = () => {
   };
   return (
     <div className="h-screen w-sceen flex bg-orange-500 justify-center items-center">
-      <div className="container mx-auto p-5 bg-white rounded flex">
-        <div className="w-1/2 h-full">
+      <div className="container mx-auto p-5 bg-white rounded flex flex-col desktop:flex-row">
+        <div className="w-full desktop:w-1/2 h-full">
           <Lottie animationData={bg_animate} loop={true} />
         </div>
-        <div className="w-1/2 h-full">
+        <div className="w-full desktop:w-1/2 h-full">
           <Form
             name="basic"
             labelCol={{

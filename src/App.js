@@ -7,18 +7,27 @@ import DetailPage from './Pages/DetailPage/DetailPage';
 import Layout from './Layout/Layout';
 import BookingPage from './Pages/BookingPage/BookingPage';
 import NotFoundPage from './Pages/NotFoundPage/NotFoundPage';
+import { adminRoutes } from './routes/adminRoutes';
+import AdminLayout from './Layout/AdminLayout';
+import Spinner from './Components/Spinner/Spinner';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Layout Component={HomePage} />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/detail/:idPhim' element={<Layout Component={DetailPage} />} />
-        <Route path='/booking/:id' element={<Layout Component={BookingPage} />} />
-        <Route path='*' element={<Layout Component={NotFoundPage} />} />
-      </Routes>
-    </BrowserRouter>
+
+    <div className='min-h-screen'>
+      <Spinner />
+      <BrowserRouter>
+        <Routes>
+          {
+            adminRoutes.map(({ url, component }) => {
+              return <Route path={url} element={component} />
+            })
+          }
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='*' element={<Layout Component={NotFoundPage} />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
