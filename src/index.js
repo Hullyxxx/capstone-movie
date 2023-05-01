@@ -7,14 +7,26 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { rootReducer } from './redux/reducer/rootReducer';
+import { configureStore } from '@reduxjs/toolkit';
+import spinnerSlice from './toolkit/spinnerSlice';
+import userSlice from './toolkit/userSlice';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
-)
+const store = configureStore({
+  reducer: {
+    spinnerSlice,
+    userSlice,
+  }
+})
+
+// const store = createStore(
+//   rootReducer,
+//   composeEnhancers(applyMiddleware(thunk))
+// )
+
+
 
 root.render(
   <Provider store={store}>

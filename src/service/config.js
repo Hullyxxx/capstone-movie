@@ -1,4 +1,5 @@
 import axios from "axios";
+import { localUserServ } from "./localService";
 
 export const BASE_URL = "https://movienew.cybersoft.edu.vn";
 
@@ -8,6 +9,7 @@ const TokenCybersoft =
 export const configHeaders = () => {
     return {
         TokenCybersoft: TokenCybersoft,
+        Authorization: "bearer " + localUserServ.get()?.accessToken
     };
 };
 

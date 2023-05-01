@@ -7,6 +7,7 @@ import { USER_LOGIN } from "../../redux/constant/UserContant";
 import Lottie from "lottie-react";
 import bg_animate from '../../assets/animate_login.json'
 import { setLoginAction, setLoginActionService } from "../../redux/action/userAction";
+import { setUserLogin } from "../../toolkit/userSlice";
 
 const LoginPage = () => {
   let dispatch = useDispatch();
@@ -43,6 +44,26 @@ const LoginPage = () => {
     dispatch(setLoginActionService(values, onSuccess))
   }
 
+  const onFinishToolKit = (values) => {
+    console.log("Success:", values);
+    userServ
+      .postLogin(values)
+      .then((res) => {
+        message.success("Login thành công");
+        // lưu thông tin user vào localStorage
+        localUserServ.set(res.data.content);
+        //dispatch(setLoginAction(res.data.content));
+        dispatch(setUserLogin(res.data.content))
+        // chuyển hướng user tới home page
+        navigate("/");
+        console.log(res);
+      })
+      .catch((err) => {
+        message.error("Đăng nhập thất bại");
+        console.log(err);
+      });
+  };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
@@ -67,7 +88,7 @@ const LoginPage = () => {
             initialValues={{
               remember: true,
             }}
-            onFinish={onFinishThunk}
+            onFinish={onFinishToolKit}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
             layout="vertical"
